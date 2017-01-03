@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 class NotesForm extends Component {
-	consrtuctor() {
+	constructor() {
 		super();
 
 		this.state = {
@@ -13,6 +13,20 @@ class NotesForm extends Component {
 		this.inputTitleChange = this.inputTitleChange.bind(this);
 		this.inputDescriptionChange = this.inputDescriptionChange.bind(this);
 		this.handleButtonClick = this.handleButtonClick.bind(this);
+	}
+
+	inputTitleChange(event) {
+		this.setState({title: event.target.value});
+	}
+
+	inputDescriptionChange(event) {
+		this.setState({description: event.target.value});
+	}
+
+	handleButtonClick(event) {
+		event.preventDefault();
+		this.props.sendNote(this.state.title, this.state.description);
+		this.setState({title: '', description: ''});
 	}
 
 	render() {
@@ -27,3 +41,5 @@ class NotesForm extends Component {
 		)
 	}
 }
+
+export default NotesForm;

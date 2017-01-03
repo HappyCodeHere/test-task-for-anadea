@@ -1,12 +1,16 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 /*IndexRoute
 Redirect*/
 
 import App from './components/App';
+import NotesContainer from './components/Notes/NotesContainer';
+import NoteInfo from './components/Notes/NoteInfo';
 
 export default (
 	<Route path="/" component={App}>
+		<IndexRoute component={NotesContainer}/>
+		<Route path="/:id" component={NoteInfo}/>
 	</Route>
 );

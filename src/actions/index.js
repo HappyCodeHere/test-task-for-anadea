@@ -16,12 +16,12 @@ var config = {
 
 /*export function func() {
   return dispatch => {
-  	dispatch({ type: types. });
-  	return axios.get().then((data) => {
-  		dispatch({ type: types., payload: data });
-  	}).catch(error => {
-  		dispatch({ type: types., payload: error });
-  	});
+    dispatch({ type: types. });
+    return axios.get().then((data) => {
+        dispatch({ type: types., payload: data });
+    }).catch(error => {
+        dispatch({ type: types., payload: error });
+    });
   };
 }*/
 
@@ -29,16 +29,52 @@ var config = {
 
 
 export function fetchNotes() {
-	console.log('hey');
-	return dispatch => {
-		dispatch({ type: types.FETCH_NOTES_START});
-    	return firebase.database().ref('notes/').on('value', data => {
-    		console.log(data.val());
-			dispatch ({ type: types.FETCH_NOTES_SUCCESS, payload: data.val() });
- 		})
-	}
+    return dispatch => {
+        dispatch({ type: types.FETCH_NOTES_START});
+        return firebase.database().ref('notes/').on('value', data => {
+            console.log('data from actions', data.val());
+            dispatch ({ type: types.FETCH_NOTES_SUCCESS, payload: data.val() });
+        })
+    }
 }
 
-/*.catch(error => {
-  			dispatch({ type: types.FETCH_NOTES_ERROR, payload: error });
-  		});*/
+export function loadNote(id) {
+    console.log(id);
+    return dispatch => {
+        dispatch({ type: types.LOAD_NOTE_START});
+        return firebase.database().ref(`notes/${id}`).on('value', data => {
+            console.log('data from load note', data.val());
+            dispatch ({ type: types.LOAD_NOTE_SUCCESS, payload: data.val() });
+        })
+    }
+}
+
+export function sendNote(title, description) {
+    return dispatch => {
+        dispatch({ type: types.SEND_NOTE_START});
+        firebase.database().ref('notes/').push({
+            title,
+            description
+        });
+        dispatch({ type: types.SEND_NOTE_SUCCESS, payload: {title, description} });
+    }
+}
+
+export function editNote(id, title, description) {
+    return dispatch => {
+        dispatch({ type: types.EDIT_NOTE_START});
+        firebase.database().ref(`notes/${id}`).set({
+            title,
+            description
+        });
+        dispatch({ type: types.EDIT_NOTE_SUCCESS, payload: {id, title, description} });
+    }
+}
+
+export function deleteNote(id) {
+    firebase.database().ref(`notes/${id}`).remove();
+    return {
+        type: types.DELETE_NOTE,
+        payload: id
+    }
+}
