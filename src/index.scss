@@ -1,5 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+
 body {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  padding: 0 5% 100px 5%;
+  font-family: 'Roboto', sans-serif;
+  background: url('http://1.bp.blogspot.com/-DEqXYw53iFc/VEKYUdAOCsI/AAAAAAAAG6k/Zup8EkkSv6Q/s1600/cbm2.png') center center no-repeat fixed;
+  background-size: cover;
+}
+
+button, a {
+	margin: 20px 0;
+	min-width: 150px;
 }

@@ -5,6 +5,8 @@ import NotesForm from './NotesForm';
 
 import { fetchNotes, sendNote } from '../../actions/index';
 
+import './notes.scss';
+
 
 class NotesContainer extends Component {
 	constructor() {
@@ -30,7 +32,7 @@ class NotesContainer extends Component {
 		return (
 			<div>
 				<NotesList {...rest}/>
-				<button onClick={this.handleButtonClick}>Add new note</button>
+				<button className="btn btn-success" onClick={this.handleButtonClick}>Add new note</button>
 				{this.state.isFormActive ? <NotesForm {...rest}/> : null}
 			</div>
 		)

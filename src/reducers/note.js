@@ -8,15 +8,15 @@ const initialState = {
 export default function(state = initialState, action) {
 	switch (action.type) {
 		case types.LOAD_NOTE_START:
-			return [action.payload];
+			return {...action.payload};
 
 		case types.LOAD_NOTE_SUCCESS:
-		console.log(action.payload);
 			return {...action.payload};
 
 		case types.LOAD_NOTE_ERROR:
-			return [action.payload];
+			return {...action.payload};
+
+		default:
+            return state;
 	}
-	
-	return state;
 }
