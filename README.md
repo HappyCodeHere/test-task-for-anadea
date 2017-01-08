@@ -1,3 +1,18 @@
+
+Готовая версия лежит на http://anadeatesttask.surge.sh, немного намудрил со стилями)
+Буду рад максимальному фидбеку.
+
+##
+
+Задание:
+
+Реализовать приложение “Заметки”. Стандартное CRUD приложение, которое отображает на главной странице список title-ов всех заметок в базе. С возможностью их подробного просмотра (title + description), удаления, редактирования, добавления новых. И поиска по уже существующим. Минималистичный responsive design. Браузеры от IE10+.
+
+СТЭК 1. React/Redux 2. ES6 3. webpack 4. SASS 5. Бэкэнд на свое усмотрение (например Firebase или node+mySQL (раз уже есть опыт)) 6. Все что еще считает нужным.
+
+##
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
