@@ -1,8 +1,7 @@
 import * as types from '../actions/types';
 
 const initialState = {
-	title: '',
-	description: ''
+	id: { title: '', description: '' }
 };
 
 export default function(state = initialState, action) {

@@ -69,7 +69,7 @@
 	}
 }
 
-.form-notes {
+.notes-form {
 	label {
 		font-size: 20px;
 		margin-top: 10px;
@@ -84,5 +84,13 @@
 	textarea {
 		width: 500px;
 		margin: 0 auto;
+	}
+
+	.form-error {
+		border: 0.5px solid red;
+		color: red;
+		width: 50%;
+		margin: 10px auto;
+		padding: 10px;
 	}
 }

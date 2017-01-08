@@ -16,8 +16,15 @@ firebase.initializeApp(config);
 export function fetchNotes() {
     return dispatch => {
         dispatch({ type: types.FETCH_NOTES_START});
-        return firebase.database().ref('notes/').on('value', data => {
-            dispatch ({ type: types.FETCH_NOTES_SUCCESS, payload: data.val() });
+        return firebase.database().ref('notes/').on('value', snapshot => {
+            dispatch ({ type: types.FETCH_NOTES_SUCCESS, payload: snapshot.val() });
+            /*console.log(snapshot.val());
+            snapshot.then(data => {
+                    console.log('promise', data);
+                }).catch(error => {
+                  */  
+                  // console.log(error);
+            // });
         })
     }
 }
@@ -54,9 +61,13 @@ export function editNote(id, title, description) {
 }
 
 export function deleteNote(id) {
-    firebase.database().ref(`notes/${id}`).remove();
-    return {
-        type: types.DELETE_NOTE,
-        payload: id
+    return dispatch => {
+        firebase.database().ref(`notes/${id}`).remove().then(data =>{
+            console.log('delete', data);
+        });
+        return {
+            type: types.DELETE_NOTE,
+            payload: id
+        }
     }
 }

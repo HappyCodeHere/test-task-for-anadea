@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
+const propTypes = {
+	title: PropTypes.string.isRequired
+}
 
 const NotesItem = (props) => {
 	return (
@@ -9,5 +12,6 @@ const NotesItem = (props) => {
 	)
 }
 
+NotesItem.propTypes = propTypes;
 
 export default NotesItem;

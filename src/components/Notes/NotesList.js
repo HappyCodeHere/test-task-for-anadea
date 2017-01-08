@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import NotesItem from './NotesItem';
 import NotesSearch from './NotesSearch';
 
+const propTypes = {
+	notes: PropTypes.object.isRequired
+}
 
 class NotesList extends Component {
 	constructor(props) {
@@ -24,26 +27,17 @@ class NotesList extends Component {
 	render() {
 		const { notes } = this.props;
 		const list = Object.keys(notes)
-
 		.filter(item => {
-			if(!notes[item]) {
-				return;
-			}
-			let item2 = notes[item]['title'].toLowerCase();
+			let filteredTitle = notes[item]['title'].toLowerCase();
 
-			return item2.indexOf(this.state.currentSearch.toLowerCase()) !== -1;
+			return filteredTitle.indexOf(this.state.currentSearch.toLowerCase()) !== -1;
 			})
 
-
 		.map((item, i) => {
-			if(!notes[item]) {
-				return;
-			}
-
 			const { title } = notes[item];
 
 			return <Link to={item} key={i}><NotesItem title={title}/></Link>
-		})
+		});
 		return (
 			<div className="notes-list">
 				<h2>Your notes:</h2>
@@ -54,5 +48,6 @@ class NotesList extends Component {
 	}
 }
 
+NotesList.propTypes = propTypes;
 
 export default NotesList;
